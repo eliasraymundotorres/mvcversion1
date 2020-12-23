@@ -5,7 +5,7 @@ include_once "includes/autoload.php";
 
 class Estudiantes{
    private $id_facultad;
-
+   private $dni;
 
     public function mostrar()
     {
@@ -13,6 +13,22 @@ class Estudiantes{
             $conexionDB = new ConexionBD();
             $conn = $conexionDB->abrirConexion();
             $sql = "SELECT * FROM estudiantes as e join facultad as f on e.id_pa=f.id order by e.apellidos asc ";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $resultado = $stmt->fetchAll();
+
+            $conexionDB->cerrarConexion();
+            return $resultado;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+    public function alumnoDni(string $dni) {
+        try {
+            $conexionDB = new ConexionBD();
+            $conn = $conexionDB->abrirConexion();
+            $sql = "SELECT * FROM estudiantes where dni=$dni ";
 
             $stmt = $conn->prepare($sql);
             $stmt->execute();

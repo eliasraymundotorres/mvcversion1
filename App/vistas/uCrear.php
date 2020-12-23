@@ -22,7 +22,7 @@
     <div class="form-group row">
      <label class="col-sm-3 col-form-label">Codigo:</label>
      <div class="col-sm-6">
-        <input type="number" class="form-control" name="codigo" placeholder="Ingrese Codigo/DNI">
+        <input type="number" class="form-control" name="codigo" id="codigo" placeholder="Ingrese Codigo/DNI">
      </div>
     </div>
     <div class="form-group row">
@@ -44,6 +44,8 @@
     <br>
     <input type="submit" class="btn btn-success" name="submit" value="Guardar">
 </form>
+<br><br>
+<button class="btn btn-danger" onclick="validar()">Validar</button>
 <?php
 if(isset($_POST["submit"])){
     $nombres = $_POST["nombres"];
